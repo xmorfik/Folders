@@ -36,17 +36,6 @@ public class FoldersController : Controller
     [HttpPost]
     public async Task<IActionResult> Import(IFormFile file)
     {
-        //long size = files.Sum(f => f.Length);
-
-        //var filePaths = new List<string>();
-        //foreach (var formFile in files)
-        //{
-        //    if (formFile.Length > 0)
-        //    {
-        //        // full path to file in temp location
-        //        var filePath = Path.GetTempFileName(); //we are using Temp file name just for the example. Add your own file path.
-        //    }
-        //}
 
         return Ok();
     }
