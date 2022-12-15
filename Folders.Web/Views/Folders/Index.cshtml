@@ -1,0 +1,56 @@
+﻿@using Folders.Core.Entities;
+
+@model Folder
+
+<div>
+    <h4>Folder</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PerentId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PerentId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Children)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Children)
+            {
+                <tr>
+                    <td>
+                        <a asp-controller="Folders" asp-action="Index" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Name)</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <a asp-action="Index" asp-route-id="@Model.PerentId">Back</a> |
+    <a asp-action="Export" >Export</a> |
+    <a asp-action="Import" >Import</a>
+</div>
+
