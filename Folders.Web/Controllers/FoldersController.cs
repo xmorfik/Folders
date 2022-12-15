@@ -34,9 +34,8 @@ public class FoldersController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> Import(IFormFile file)
+    public IActionResult Import(IFormFile file)
     {
-
         return Ok();
     }
 }
