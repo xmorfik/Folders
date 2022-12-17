@@ -1,7 +1,6 @@
 using Folders.Services.Interfaces;
 using Folders.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using Folders.Core.Entities;
 using Newtonsoft.Json;
 
 namespace Folders.Services;

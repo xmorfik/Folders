@@ -2,8 +2,6 @@ using Folders.Core.Entities;
 using Folders.Infrastructure.Data;
 using Folders.Services.Interfaces;
 using Newtonsoft.Json;
-using System.Security.Principal;
-using System.Text.Json;
 
 namespace Folders.Services;
 

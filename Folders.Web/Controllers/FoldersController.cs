@@ -57,8 +57,8 @@ public class FoldersController : Controller
     public async Task<IActionResult> ImportFromFile()
     {
 
-            await _importToFileService.ImportToFile();
-    
+        await _importToFileService.ImportToFile();
+
         return RedirectToAction("Index", "Folders");
     }
 
