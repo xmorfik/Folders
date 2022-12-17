@@ -13,7 +13,7 @@ public class FolderToDatabaseService : IFolderToDatabaseService
         _foldersDbContext = foldersDbContext;
     }
 
-    public async Task Import(Folder root)
+    public async Task ImportToDatabase(Folder root)
     {
         _foldersDbContext.Database.EnsureDeleted();
         _foldersDbContext.Database.EnsureCreated();

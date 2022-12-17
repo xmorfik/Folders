@@ -8,8 +8,8 @@ public static class ConfigureServicesExtention
     public static IServiceCollection AddServices(this IServiceCollection services)
     {
         services.AddScoped<IFolderService, FolderService>();
-        services.AddScoped<IExportFoldersService, ExportFoldersService>();
-        services.AddScoped<IImportFoldersService, ImportFolderService>();
+        services.AddScoped<IExportToFileService, ExportToFileService>();
+        services.AddScoped<IImportToFileService, ImportToFileService>();
         services.AddScoped<IFileSystemSnapshotService, FileSystemSnapshotService>();
         services.AddScoped<IFolderToDatabaseService, FolderToDatabaseService>();
 

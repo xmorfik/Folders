@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Folders.Core\Folders.Core.csproj" />
     <ProjectReference Include="..\Folders.Infrastructure\Folders.Infrastructure.csproj" />
   </ItemGroup>

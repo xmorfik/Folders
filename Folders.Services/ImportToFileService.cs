@@ -1,25 +1,30 @@
 using Folders.Core.Entities;
 using Folders.Infrastructure.Data;
 using Folders.Services.Interfaces;
+using Newtonsoft.Json;
+using System.Security.Principal;
 using System.Text.Json;
 
 namespace Folders.Services;
 
-public class ImportFolderService : IImportFoldersService
+public class ImportToFileService : IImportToFileService
 {
     private readonly FoldersDbContext _foldersDbContext;
 
-    public ImportFolderService(FoldersDbContext foldersDbContext)
+    public ImportToFileService(FoldersDbContext foldersDbContext)
     {
         _foldersDbContext = foldersDbContext;
     }
 
-    public async Task Import()
+    public async Task ImportToFile()
     {
         var folders = new List<Folder>();
         using (FileStream fs = new FileStream("folders.json", FileMode.Open))
         {
-            folders = await JsonSerializer.DeserializeAsync<List<Folder>>(fs);
+            var sr = new StreamReader(fs);
+            var json = await sr.ReadToEndAsync();
+            folders = JsonConvert.DeserializeObject<List<Folder>>(json);
+            sr.Close();
         }
         await AddToDatabase(folders);
     }

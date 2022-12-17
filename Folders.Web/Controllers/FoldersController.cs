@@ -7,22 +7,22 @@ namespace Folders.Web.Controllers;
 public class FoldersController : Controller
 {
     private readonly IFolderService _folderService;
-    private readonly IExportFoldersService _exportFoloderService;
-    private readonly IImportFoldersService _importFoloderService;
+    private readonly IExportToFileService _exportToFileService;
+    private readonly IImportToFileService _importToFileService;
     private readonly IFileSystemSnapshotService _fileSystemSnapshotService;
     private readonly IFolderToDatabaseService _folderToDatabaseService;
 
     public FoldersController(IFolderService folderService,
-        IExportFoldersService exportFoldersService,
+        IExportToFileService exportFoldersService,
         IFileSystemSnapshotService fileSystemSnapshotService,
         IFolderToDatabaseService folderToDatabaseService,
-        IImportFoldersService importFoloderService)
+        IImportToFileService importFoloderService)
     {
         _folderService = folderService;
-        _exportFoloderService = exportFoldersService;
+        _exportToFileService = exportFoldersService;
         _fileSystemSnapshotService = fileSystemSnapshotService;
         _folderToDatabaseService = folderToDatabaseService;
-        _importFoloderService = importFoloderService;
+        _importToFileService = importFoloderService;
     }
 
     public async Task<IActionResult> Index(int id)
@@ -45,7 +45,7 @@ public class FoldersController : Controller
     {
         try
         {
-            await _exportFoloderService.Export();
+            await _exportToFileService.ExportToFile();
         }
         catch
         {
@@ -56,19 +56,14 @@ public class FoldersController : Controller
 
     public async Task<IActionResult> ImportFromFile()
     {
-        try
-        {
-            await _importFoloderService.Import();
-        }
-        catch
-        {
-        }
 
+            await _importToFileService.ImportToFile();
+    
         return RedirectToAction("Index", "Folders");
     }
 
     [HttpGet]
-    public async Task<IActionResult> ImportFromFileSystem()
+    public IActionResult ImportFromFileSystem()
     {
         return View();
     }
@@ -78,9 +73,9 @@ public class FoldersController : Controller
     {
         try
         {
-            await _exportFoloderService.Export();
+            await _exportToFileService.ExportToFile();
             var folder = _fileSystemSnapshotService.GetSnapshot(path);
-            await _folderToDatabaseService.Import(folder);
+            await _folderToDatabaseService.ImportToDatabase(folder);
         }
         catch
         {
