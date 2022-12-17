@@ -13,6 +13,7 @@ public class Folder : BaseEntity
 
     public Folder()
     {
+        Name = string.Empty;
         Children = new List<Folder>();
     }
 

@@ -4,11 +4,11 @@ using Folders.Services.Interfaces;
 
 namespace Folders.Services;
 
-public class FolderToDatabaseService : IFolderToDatabaseService
+public class FoldersToDatabaseService : IFoldersToDatabaseService
 {
     private readonly FoldersDbContext _foldersDbContext;
 
-    public FolderToDatabaseService(FoldersDbContext foldersDbContext)
+    public FoldersToDatabaseService(FoldersDbContext foldersDbContext)
     {
         _foldersDbContext = foldersDbContext;
     }

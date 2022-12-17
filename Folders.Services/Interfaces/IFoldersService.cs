@@ -2,7 +2,7 @@
 
 namespace Folders.Services.Interfaces;
 
-public interface IFolderService
+public interface IFoldersService
 {
     public Task<Folder> Get(int id);
 }

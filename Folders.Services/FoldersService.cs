@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Folders.Services;
 
-public class FolderService : IFolderService
+public class FoldersService : IFoldersService
 {
     private readonly FoldersDbContext _foldersDbContext;
 
-    public FolderService(FoldersDbContext foldersDbContext)
+    public FoldersService(FoldersDbContext foldersDbContext)
     {
         _foldersDbContext = foldersDbContext;
     }

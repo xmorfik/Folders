@@ -6,23 +6,23 @@ namespace Folders.Web.Controllers;
 
 public class FoldersController : Controller
 {
-    private readonly IFolderService _folderService;
+    private readonly IFoldersService _foldersService;
     private readonly IExportToFileService _exportToFileService;
     private readonly IImportToFileService _importToFileService;
     private readonly IFileSystemSnapshotService _fileSystemSnapshotService;
-    private readonly IFolderToDatabaseService _folderToDatabaseService;
+    private readonly IFoldersToDatabaseService _folderToDatabaseService;
 
-    public FoldersController(IFolderService folderService,
-        IExportToFileService exportFoldersService,
+    public FoldersController(IFoldersService foldersService,
+        IExportToFileService exportToFileService,
         IFileSystemSnapshotService fileSystemSnapshotService,
-        IFolderToDatabaseService folderToDatabaseService,
-        IImportToFileService importFoloderService)
+        IFoldersToDatabaseService folderToDatabaseService,
+        IImportToFileService importToFileService)
     {
-        _folderService = folderService;
-        _exportToFileService = exportFoldersService;
+        _foldersService = foldersService;
+        _exportToFileService = exportToFileService;
         _fileSystemSnapshotService = fileSystemSnapshotService;
         _folderToDatabaseService = folderToDatabaseService;
-        _importToFileService = importFoloderService;
+        _importToFileService = importToFileService;
     }
 
     public async Task<IActionResult> Index(int id)
@@ -31,7 +31,7 @@ public class FoldersController : Controller
 
         try
         {
-            root = await _folderService.Get(id);
+            root = await _foldersService.Get(id);
         }
         catch
         {
@@ -56,9 +56,14 @@ public class FoldersController : Controller
 
     public async Task<IActionResult> ImportFromFile()
     {
-
-        await _importToFileService.ImportToFile();
-
+        try
+        {
+            await _importToFileService.ImportToFile();
+        }
+        catch
+        {
+        }
+        
         return RedirectToAction("Index", "Folders");
     }
 
