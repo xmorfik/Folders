@@ -4,5 +4,5 @@ namespace Folders.Services.Interfaces;
 
 public interface IFolderService
 {
-    public ValueTask<Folder> Get(int id);
+    public Task<Folder> Get(int id);
 }

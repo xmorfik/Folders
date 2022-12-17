@@ -9,6 +9,9 @@ public static class ConfigureServicesExtention
     {
         services.AddScoped<IFolderService, FolderService>();
         services.AddScoped<IExportFoldersService, ExportFoldersService>();
+        services.AddScoped<IImportFoldersService, ImportFolderService>();
+        services.AddScoped<IFileSystemSnapshotService, FileSystemSnapshotService>();
+        services.AddScoped<IFolderToDatabaseService, FolderToDatabaseService>();
 
         return services;
     }

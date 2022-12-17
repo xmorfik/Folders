@@ -1,6 +1,5 @@
 using Folders.Services.Interfaces;
 using System.Text.Json;
-using System;
 using Folders.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Folders.Core.Entities;

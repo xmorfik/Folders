@@ -17,4 +17,9 @@ public class FoldersDbContext : DbContext
         builder.ApplyConfiguration(new FolderConfiguration());
         base.OnModelCreating(builder);
     }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder options)
+    {
+        options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+    }
 }

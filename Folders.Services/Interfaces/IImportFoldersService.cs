@@ -1,6 +1,6 @@
 namespace Folders.Services.Interfaces;
 
-public interface IImportFolderService
+public interface IImportFoldersService
 {
     public Task Import();
 }

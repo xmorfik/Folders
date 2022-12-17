@@ -14,35 +14,28 @@ public class FolderService : IFolderService
         _foldersDbContext = foldersDbContext;
     }
 
-    public async ValueTask<Folder> Get(int id)
-    {
-        if (id == 0)
-        {
-            return await GetRoot();
-        }
-
-        try
-        {
-            var folder = await _foldersDbContext.Folders.FindAsync(id);
-            var children = await _foldersDbContext.Folders.Where(x => x.PerentId == id).ToListAsync();
-            folder.Children = children;
-            return folder;
-        }
-        catch
-        {
-            throw new Exception();
-        }
-    }
-
-    private async ValueTask<Folder> GetRoot()
+    public async Task<Folder> Get(int id)
     {
         try
         {
-            var folder = await _foldersDbContext.Folders.FirstOrDefaultAsync();
-            var children = await _foldersDbContext.Folders.Where(x => x.PerentId == folder.Id)
-                                                          .Where(x => x.Id != folder.Id).ToListAsync();
-            folder.Children = children;
-            return folder;
+            if (id == 0)
+            {
+                var folder = await _foldersDbContext.Folders.FirstOrDefaultAsync();
+                if (folder == null)
+                {
+                    return new Folder();
+                }
+                var children = await _foldersDbContext.Folders.Where(x => x.PerentId == folder.Id).ToListAsync();
+                folder.Children = children;
+                return folder;
+            }
+            else
+            {
+                var folder = await _foldersDbContext.Folders.FindAsync(id);
+                var children = await _foldersDbContext.Folders.Where(x => x.PerentId == id).ToListAsync();
+                folder.Children = children;
+                return folder;
+            }
         }
         catch
         {
