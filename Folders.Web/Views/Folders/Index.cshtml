@@ -49,9 +49,12 @@
 </div>
 
 <div>
-    <a asp-action="Index" asp-route-id="@Model.PerentId">Back</a> |
-    <a asp-action="ExportToFile" >Export To File</a> |
-    <a asp-action="ImportFromFile" >Import From File</a> |
-    <a asp-action="ImportFromFileSystem">Import From File System</a>
+    <a asp-action="ExportToFile" >Export to folders.json</a> |
+    <a asp-action="ImportFromFile" >Import from folders.json</a> |
+    <a asp-action="ImportFromFileSystem">Import from file system</a>
+</div>
+
+<div>
+    <a asp-action="Index" asp-route-id="@Model.PerentId">Back</a>
 </div>
 
